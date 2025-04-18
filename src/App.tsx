@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { FaceLandmarker, FaceLandmarkerOptions, FilesetResolver } from "@mediapipe/tasks-vision";
 import { Matrix4, Euler } from 'three';
 import { Canvas, useFrame, useGraph } from '@react-three/fiber';
@@ -120,21 +120,7 @@ function App() {
     }
   };
 
-  /*const setup = async () => {
-    const filesetResolver = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm");
-    faceLandmarker = await FaceLandmarker.createFromOptions(filesetResolver, options);
-
-    video = document.getElementById("video") as HTMLVideoElement;
-    navigator.mediaDevices.getUserMedia({
-      video: { width: 1280, height: 720 },
-      audio: false,
-    }).then((stream) => {
-      video.srcObject = stream;
-      video.addEventListener("loadeddata", predict);
-    });
-  };*/
-
-  const predict = async () => {
+  const predict = useCallback(async () => {
     let nowInMs = Date.now();
     if (lastVideoTime !== video.currentTime) {
       lastVideoTime = video.currentTime;
@@ -149,13 +135,13 @@ function App() {
     }
 
     window.requestAnimationFrame(predict);
-  };
+  }, []);
 
   useEffect(() => {
     const setup = async () => {
       const filesetResolver = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm");
       faceLandmarker = await FaceLandmarker.createFromOptions(filesetResolver, options);
-  
+
       video = document.getElementById("video") as HTMLVideoElement;
       navigator.mediaDevices.getUserMedia({
         video: { width: 1280, height: 720 },
@@ -165,9 +151,9 @@ function App() {
         video.addEventListener("loadeddata", predict);
       });
     };
-  
+
     setup();
-  }, []); // Empty dependency array is now safe
+  }, [predict]);
 
   const presetAvatars = [
     "https://models.readyplayer.me/6460d95f9ae10f45bffb2864.glb?morphTargets=ARKit&textureAtlas=1024",
@@ -177,12 +163,11 @@ function App() {
 
   const handleAvatarChange = (newUrl: string) => {
     setUrl(newUrl);
-    localStorage.setItem('lastAvatar', newUrl);  // Save the selected avatar URL
+    localStorage.setItem('lastAvatar', newUrl);
   };
 
   return (
     <div className="App">
-      {/* Blinking Recording Indicator */}
       {recording && <div className="recording-indicator" />}
 
       <div className="avatar-selector">
