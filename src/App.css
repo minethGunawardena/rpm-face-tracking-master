@@ -1,0 +1,127 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #000;
+  position: fixed;
+  width: 100%;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #69ebca, #7a42af);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.camera-feed {
+  margin: 16px 0;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 468px;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
+.logo {
+  position: absolute;
+  width: 80px;
+  bottom: 16px;
+  left: 16px;
+}
+
+.url {
+  margin: 8px 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 436px;
+  height: 40px;
+  border: 2px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.url:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.record-btn {
+  margin: 12px;
+  padding: 10px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.record-btn:hover {
+  background-color: darkred;
+}
+
+.avatar-canvas {
+  width: 100%;
+  max-width: 468px;
+  height: 300px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.preset-buttons button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #4b69ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.preset-buttons button:hover {
+  background-color: #3249c7;
+}
+
+/* Blinking indicator */
+.recording-indicator {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
