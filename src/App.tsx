@@ -152,11 +152,8 @@ function App() {
   };
 
   useEffect(() => {
-    const initialize = async () => {
-      await setup();
-    };
-    initialize();
-  }, [])
+    setup();
+  }, [setup]);
 
   const presetAvatars = [
     "https://models.readyplayer.me/6460d95f9ae10f45bffb2864.glb?morphTargets=ARKit&textureAtlas=1024",
