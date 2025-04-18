@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState, useRef } from 'react';
 import { FaceLandmarker, FaceLandmarkerOptions, FilesetResolver } from "@mediapipe/tasks-vision";
-import { Color, Euler, Matrix4 } from 'three';
+import { Matrix4, Euler } from 'three';
 import { Canvas, useFrame, useGraph } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
