@@ -1,0 +1,74 @@
+/* Modal Overlay to blur the background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is on top of other content */
+  backdrop-filter: blur(4px); /* Optional: smooth blur effect */
+}
+
+/* Modal box */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Title of the Modal */
+.modal h2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Buttons styling */
+.modal button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Save button style */
+.modal button:nth-of-type(1) {
+  background-color: #4caf50;
+  color: white;
+  margin-right: 10px;
+}
+
+/* Cancel button style */
+.modal button:nth-of-type(2) {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Hover effect for buttons */
+.modal button:hover {
+  opacity: 0.8;
+}
