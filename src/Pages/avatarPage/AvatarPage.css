@@ -55,6 +55,7 @@ p, .url-input, .record-btn {
 }
 
 .camera-feed {
+  position: absolute;
   margin: 16px 0;
   border-radius: 16px;
   width: 100%;
@@ -89,8 +90,11 @@ p, .url-input, .record-btn {
   outline: none;
 }
 
+
 .custom-url-section button {
   margin-top: 8px;
+  margin-left: 5px;
+  margin-bottom: 20px;
   padding: 8px 20px;
   font-size: 14px;
   border: none;
@@ -134,6 +138,30 @@ p, .url-input, .record-btn {
 .record-btn:active {
   transform: scale(0.95);
   background-color: var(--hover-color);
+}
+
+.ChangeColor-btn{
+  margin: 12px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-family:var(--button-font--style);
+  border: none;
+  border-radius: 12px;
+  background-color: var(--record-btn-color);
+  color: var(--button-text-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s ease-in-out;
+
+}
+
+.ChangeColor-btn:hover{
+  background-color: var(--secondary-color);
+}
+.ChangeColor-btn:active{
+  transform: scale(0.95);
+  background-color: var(--hover-color);
+
 }
 
 .avatar-canvas {

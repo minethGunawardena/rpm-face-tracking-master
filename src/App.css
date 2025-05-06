@@ -45,6 +45,16 @@ body {
   padding: 10px;
   box-sizing: border-box;
 }
+.App-header {
+  padding: 3px 0;
+  margin-bottom: 10px;
+}
+
+.App-header h3 {
+  margin: 0;
+  font-size: 20px; /* Adjust to your preference */
+  font-weight: 600;
+}
 
 .camera-feed {
   margin: 14px 0;

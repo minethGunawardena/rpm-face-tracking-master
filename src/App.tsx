@@ -7,7 +7,11 @@ import './App.css';
 function App() {
   return (
     <Router>
+      
       <div className="App">
+        <div className="App-header">
+          <h3> Virtual Parent</h3>
+        </div>
         {/* Navigation links */}
         <nav>
           <ul>

@@ -7,6 +7,7 @@ import { useGLTF } from '@react-three/drei';
 import { v4 as uuidv4 } from 'uuid';
 import DownloadConfirmationModal from '../../Components/PoupCards/DownloadConfirmationModal';
 import SaveConfirmationModal from '../../Components/PoupCards/SaveConfirmationModal';
+import ColorSelectorPopup from '../../Components/PoupCards/ColorSelectorPopUp'
 import supabase from '../../Components/Connections/supabaseClient';
 
 let video: HTMLVideoElement;
@@ -68,10 +69,12 @@ function AvatarPage() {
 
   const [isDownloadModalVisible, setIsDownloadModalVisible] = useState(false);
   const [isSaveModalVisible, setIsSaveModalVisible] = useState(false);
-  const [videoName, setVideoName] = useState("avatar-recording");
+  const [videoName, setVideoName] = useState("");
   const [videoDescription, setVideoDescription] = useState("");
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isColorPopupVisible, setIsColorPopupVisible] = useState(false);
+  const [bgColor, setBgColor] = useState("#e4caed");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const recordedChunksRef = useRef<Blob[]>([]);
 
@@ -230,69 +233,88 @@ function AvatarPage() {
 
   return (
     <div className="App">
-      {recording && <div className="recording-indicator" />}
-      <div className="avatar-selector">
-        <h3>Choose Your Avatar</h3>
-        <div className="preset-buttons">
-          {presetAvatars.map((preset, index) => (
-            <button key={index} onClick={() => handleAvatarChange(preset)}>
-              Avatar {index + 1}
-            </button>
-          ))}
+        {recording && <div className="recording-indicator"/>}
+        <div className="avatar-selector">
+          <h3>Choose Your Avatar</h3>
+          <div className="preset-buttons">
+            {presetAvatars.map((preset, index) => (
+                <button key={index} onClick={() => handleAvatarChange(preset)}>
+                  Avatar {index + 1}
+                </button>
+            ))}
+          </div>
         </div>
+
+        <div className="custom-url-section">
+          <input
+              className="url-input"
+              type="text"
+              placeholder="Enter custom avatar URL"
+              value={customUrl}
+              onChange={(e) => setCustomUrl(e.target.value)}
+          />
+          <button onClick={() => {
+            if (customUrl) {
+              handleAvatarChange(customUrl);
+              setCustomUrl("");
+            }
+          }}>Load Custom Avatar
+          </button>
+          <a href="https://readyplayer.me/avatar?id=681a1a484093a4a6a5e2269d">
+            <button>Create Your Avatar</button>
+          </a>
+        </div>
+
+        <video className="camera-feed" id="video" autoPlay muted></video>
+
+
+
+        <Canvas
+            ref={canvasRef}
+            className="avatar-canvas"
+            camera={{fov: 25}}
+            shadows
+        >
+          <color attach="background" args={[bgColor]}/>
+          <ambientLight intensity={0.5}/>
+          <pointLight position={[10, 10, 10]} intensity={0.5}/>
+          <pointLight position={[-10, 0, 10]} intensity={0.5}/>
+          <Avatar url={url}/>
+        </Canvas>
+
+        {isDownloadModalVisible && (
+            <DownloadConfirmationModal
+                onDownload={handleDownloadConfirm}
+                onCancel={handleCancel}
+            />
+        )}
+
+        {isSaveModalVisible && (
+            <SaveConfirmationModal
+                onConfirm={handleSaveConfirm}
+                onCancel={handleCancel}
+            />
+        )}
+
+        {isColorPopupVisible && (
+            <ColorSelectorPopup
+              initialColor={bgColor}
+              onConfirm={(color) => {
+                setBgColor(color);
+                setIsColorPopupVisible(false);
+              }}
+              onCancel={() => setIsColorPopupVisible(false)}
+            />
+        )}
+        
+        <button className="record-btn" onClick={toggleRecording}>
+          {recording ? "Stop" : "Record"}
+        </button>
+        <button className="ChangeColor-btn" onClick={() => setIsColorPopupVisible(true)}>
+          Change Background Color
+        </button>
+
       </div>
-
-      <div className="custom-url-section">
-        <input
-          className="url-input" 
-          type="text"
-          placeholder="Enter custom avatar URL"
-          value={customUrl}
-          onChange={(e) => setCustomUrl(e.target.value)}
-        />
-        <button onClick={() => {
-          if (customUrl) {
-            handleAvatarChange(customUrl);
-            setCustomUrl("");
-          }
-        }}>Load Custom Avatar</button>
-      </div>
-
-      <video className="camera-feed" id="video" autoPlay muted></video>
-
-      <button className="record-btn" onClick={toggleRecording}>
-        {recording ? "Stop" : "Record"}
-      </button>
-
-      <Canvas
-        ref={canvasRef}
-        className="avatar-canvas"
-        camera={{ fov: 25 }}
-        shadows
-      >
-        <color attach="background" args={["#e4caed"]} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
-        <pointLight position={[-10, 0, 10]} intensity={0.5} />
-        <Avatar url={url} />
-      </Canvas>
-
-      {isDownloadModalVisible && (
-        <DownloadConfirmationModal
-          onDownload={handleDownloadConfirm}
-          onCancel={handleCancel}
-        />
-      )}
-
-      {isSaveModalVisible && (
-        <SaveConfirmationModal
-          onConfirm={handleSaveConfirm}
-          onCancel={handleCancel}
-        />
-      )}
-
-     
-    </div>
   );
 }
 

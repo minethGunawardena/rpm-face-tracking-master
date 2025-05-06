@@ -10,7 +10,7 @@ const DownloadConfirmationModal: React.FC<DownloadConfirmationModalProps> = ({
   onDownload,
   onCancel
 }) => {
-  const [filename, setFilename] = useState('avatar-recording');
+  const [filename, setFilename] = useState('');
   const [description, setDescription] = useState('');
 
   const handleDownloadClick = () => {
@@ -28,7 +28,7 @@ const DownloadConfirmationModal: React.FC<DownloadConfirmationModalProps> = ({
           type="text"
           value={filename}
           onChange={(e) => setFilename(e.target.value)}
-          placeholder="Enter video name"
+          placeholder="Please Enter a name For Video"
         />
 
         <textarea
