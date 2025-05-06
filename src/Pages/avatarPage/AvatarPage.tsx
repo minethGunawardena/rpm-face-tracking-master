@@ -16,6 +16,7 @@ let blendshapes: any[] = [];
 let rotation: Euler;
 let headMesh: any[] = [];
 
+
 const options: FaceLandmarkerOptions = {
   baseOptions: {
     modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
@@ -217,9 +218,9 @@ function AvatarPage() {
   }, [predict]);
 
   const presetAvatars = [
-    "https://models.readyplayer.me/6460d95f9ae10f45bffb2864.glb?morphTargets=ARKit&textureAtlas=1024",
-    "https://models.readyplayer.me/680275100f6d95f6d75bb221.glb?morphTargets=ARKit&textureAtlas=1024",
-    "https://models.readyplayer.me/68028766679b181682f009e0.glb?morphTargets=ARKit&textureAtlas=1024"
+    "https://models.readyplayer.me/6819a28c4093a4a6a5dcef3d.glb?morphTargets=ARKit&textureAtlas=1024",
+    "https://models.readyplayer.me/6819a353aad84e087ecaad33.glb?morphTargets=ARKit&textureAtlas=1024",
+    "https://models.readyplayer.me/6819a43580fc67366db22770.glb?morphTargets=ARKit&textureAtlas=1024"
   ];
 
   const handleAvatarChange = (newUrl: string) => {
@@ -243,7 +244,7 @@ function AvatarPage() {
 
       <div className="custom-url-section">
         <input
-          className="url-input"
+          className="url-input" 
           type="text"
           placeholder="Enter custom avatar URL"
           value={customUrl}
@@ -269,7 +270,7 @@ function AvatarPage() {
         camera={{ fov: 25 }}
         shadows
       >
-        <color attach="background" args={["#d3d3f0"]} />
+        <color attach="background" args={["#e4caed"]} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
         <pointLight position={[-10, 0, 10]} intensity={0.5} />
@@ -290,7 +291,7 @@ function AvatarPage() {
         />
       )}
 
-      <img className="logo" src="./logo.png" alt="logo" />
+     
     </div>
   );
 }

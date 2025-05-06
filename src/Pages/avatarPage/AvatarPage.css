@@ -1,128 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:wght@300..900&display=swap');
+
+:root {
+  --primary-color: #cf95e2;
+  --secondary-color: #FCFFFA;
+  --accent-color: #ffffff;
+  --hover-color: #d499d6;
+  --button-text-color: #fff;
+  --record-btn-color : #8c0f2d;
+  --button-font--style:'Fredoka', sans-serif;
+}
+
 html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-  }
-  
-  body {
-    font-family: sans-serif;
-    background-color: #000;
-    position: fixed;
-    width: 100%;
-  }
-  
-  .App {
-    text-align: center;
-    height: 100vh;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(45deg, #69ebca, #7a42af);
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  .camera-feed {
-    margin: 16px 0;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 468px;
-    height: auto;
-    aspect-ratio: 16/9;
-  }
-  
-  .logo {
-    position: absolute;
-    width: 80px;
-    bottom: 16px;
-    left: 16px;
-  }
-  
-  .url {
-    margin: 8px 0;
-    border-radius: 12px;
-    padding: 0 16px;
-    width: 100%;
-    max-width: 436px;
-    height: 40px;
-    border: 2px solid #ccc;
-    background-color: #f9f9f9;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .url:focus {
-    border-color: #4caf50;
-    outline: none;
-  }
-  
-  .record-btn {
-    margin: 12px;
-    padding: 10px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 12px;
-    background-color: crimson;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .record-btn:hover {
-    background-color: darkred;
-  }
-  
-  .avatar-canvas {
-    width: 100%;
-    max-width: 468px;
-    height: 300px;
-  }
-  
-  .preset-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .preset-buttons button {
-    padding: 8px 16px;
-    border-radius: 12px;
-    border: none;
-    background-color: #4b69ff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .preset-buttons button:hover {
-    background-color: #3249c7;
-  }
-  
-  /* Blinking indicator */
-  .recording-indicator {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    animation: blink 1s infinite alternate;
-  }
-  
-  @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: 'Fredoka', sans-serif;  /* Default font */
+}
+
+body {
+  background-color: #000;
+  position: fixed;
+  width: 100%;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background:var(--primary-color);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Apply Rubik font for headings */
+h1, h2, h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+}
+
+/* Apply Open Sans for paragraphs and other text */
+p, .url-input, .record-btn {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.camera-feed {
+  margin: 16px 0;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 468px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.logo {
+  position: absolute;
+  width: 80px;
+  bottom: 16px;
+  left: 16px;
+}
+
+.url-input {
+  margin: 8px 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 436px;
+  height: 40px;
+  border: 2px solid var(--primary-color);
+  background-color: var(--accent-color);
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.url-input:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+.custom-url-section button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--button-color);
+  color: #fff;
+  font-weight: bold;
+  font-family: var(--button-font--style);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s ease-in-out;
+}
+
+.custom-url-section button:hover {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+}
+
+.custom-url-section button:active {
+  transform: scale(0.95);
+  background-color: var(--hover-color);
+}
+
+.record-btn {
+  margin: 12px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-family:var(--button-font--style);
+  border: none;
+  border-radius: 12px;
+  background-color: var(--record-btn-color);
+  color: var(--button-text-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s ease-in-out;
+}
+
+.record-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.record-btn:active {
+  transform: scale(0.95);
+  background-color: var(--hover-color);
+}
+
+.avatar-canvas {
+  width: 100%;
+  max-width: 468px;
+  height: 300px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.preset-buttons button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--secondary-color);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s ease-in-out;
+}
+
+.preset-buttons button:hover {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+}
+
+.preset-buttons button:active {
+  transform: scale(0.95);
+  background-color: var(--hover-color);
+}
+
+/* Blinking indicator */
+.recording-indicator {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}

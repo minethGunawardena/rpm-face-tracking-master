@@ -1,15 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:wght@300..900&display=swap');
+
+
+:root {
+  --primary-color: #efe5f5;
+  --secondary-color: #FCFFFA;
+  --accent-color: #ffffff;
+  --button-color:#91233c;
+  --text-dark: #333;
+  --base--fontFamily :'Fredoka', sans-serif;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
+  font-family: 'Fredoka', sans-serif;
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #000;
+  font-family:var(--base--fontFamily);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   position: fixed;
   width: 100%;
+  height: 100%;
+  color: var(--text-dark);
 }
 
 .App {
@@ -25,19 +40,20 @@ body {
   overflow: hidden;
   position: relative;
   border-radius: 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(45deg, #69ebca, #7a42af);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: var(--primary-color);
   padding: 10px;
   box-sizing: border-box;
 }
 
 .camera-feed {
-  margin: 16px 0;
+  margin: 14px 0;
   border-radius: 16px;
   width: 100%;
-  max-width: 468px;
+  max-width: 250px;
   height: auto;
   aspect-ratio: 16/9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -48,20 +64,20 @@ body {
 }
 
 .url {
-  margin: 8px 0;
+  margin: 4% 0;
   border-radius: 12px;
   padding: 0 16px;
   width: 100%;
   max-width: 436px;
   height: 40px;
-  border: 2px solid #ccc;
-  background-color: #f9f9f9;
+  border: 2px solid var(--primary-color);
+  background-color: #fff;
   font-size: 14px;
   transition: border-color 0.3s ease;
 }
 
 .url:focus {
-  border-color: #4caf50;
+  background-color: var(--button-color);
   outline: none;
 }
 
@@ -71,21 +87,23 @@ body {
   font-size: 16px;
   border: none;
   border-radius: 12px;
-  background-color: crimson;
-  color: white;
+  background-color: var(--button-color);
+  color: var(--accent-color);
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .record-btn:hover {
-  background-color: darkred;
+  background-color: #d06a85;
 }
 
 .avatar-canvas {
   width: 100%;
   max-width: 468px;
   height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 }
 
 .preset-buttons {
@@ -98,14 +116,16 @@ body {
   padding: 8px 16px;
   border-radius: 12px;
   border: none;
-  background-color: #4b69ff;
-  color: white;
+  background-color: var(--button-color);
+  color: var(--accent-color);
   font-weight: bold;
+  font-family: var(--base--fontFamily);
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .preset-buttons button:hover {
-  background-color: #3249c7;
+  background-color: #d06a85;
 }
 
 /* Blinking indicator */
@@ -118,6 +138,54 @@ body {
   background-color: red;
   border-radius: 50%;
   animation: blink 1s infinite alternate;
+}
+
+nav {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+li {
+  display: inline-block;
+}
+
+/* Style for navigation links to look like buttons */
+nav a {
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 4px; 
+  background-color: var(--button-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+}
+
+/* Hover and active states */
+nav a:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+nav a:active {
+  transform: scale(0.95);
+  background-color: var(--hover-color);
+}
+
+/* Add some spacing between the links */
+ul li a {
+  margin: 10px;
 }
 
 @keyframes blink {
